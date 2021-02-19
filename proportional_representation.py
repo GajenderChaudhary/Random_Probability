@@ -1,4 +1,6 @@
-## Automate the whole project.
+## Automated whole project.
+## You name the candidates and you choose number of voters and then the program randomly assign votes preference to all candidates.
+## That preference is then calculated based on proportional representation system and last remaining candidate is declared as winner.
 
 candidates = input(" Enter the Name of the candidates separated by a space ")
 candidates = candidates.split()
@@ -42,7 +44,7 @@ for tot_pref in pref: ## going through each list within the list. # tot_pref is 
 
 seq_list = list()
 for seq_ord in range(len(candidates)):
-    seq_list.append(pref_new[seq_ord::len(candidates)])## new list of list
+    seq_list.append(pref_new[seq_ord::len(candidates)])## new list of list based on slicing.
 #print(seq_list)## list preference wise
 
 ## Now you can create a dictionary to count the variables.
@@ -55,9 +57,9 @@ for count in seq_list:
             dict_count[count_elements]=1
         else:
             dict_count[count_elements] = dict_count[count_elements] + 1
-    list_of_dict_count.append(dict_count)## this list of dictionary will have counted preferences of all levels.
+    list_of_dict_count.append(dict_count)## the dictionary contained within this list sequentially contains vote preference of each candidate. 
 
-print(list_of_dict_count)
+print(list_of_dict_count)## 
 
 final_dict = {}
 final_winner = candidates
@@ -95,15 +97,16 @@ for dic in list_of_dict_count:
         if k in low_list:
             print(" At Round " + str(count_loop) + " the eliminated candidate is :" + str(k))
             final_winner.remove(k)
-            final_dict[k] = None  ## this will set the valu
-
+            final_dict[k] = None  ## this will set the value to none
 
 print(" the last final dict is " + str(final_dict))
-print(" The Winner : " + str(final_winner[0]) + " who cumulatively got " + str(final_dict[final_winner[0]]))
+
+print(f" The Winner is {final_winner[0]} who cumulatively got {final_dict[final_winner[0]]} votes") # used f strings instead of concatenation.
+
 if candidate in final_winner:
-    print(" your chosen candidate won ")
+    print(" your candidate won. Voters really love your candidate. ")
 else:
-    print(" Your Candidate lost")
+    print(" Your Candidate lost. Design a good campaign next time.")
 
 
 
