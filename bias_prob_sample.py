@@ -1,6 +1,6 @@
 ## Biases embedded in data based probability calculations.
 ## Draw a sample from the population and then check for changing probability at each simulation.
-## at first draw, each unit of population has 1/population chance of being picked. But that is crude understanding.
+## at first draw, each unit of population has sample/population chance of being picked. 
 # conditional probability works in a different sense.
 
 
@@ -72,17 +72,17 @@ df = pd.DataFrame(final_dict).T
 print(df)
 
 Total = pd.Series(df.sum(axis=0))## axis = 0 to add column, axis = 1 to add row.
-print(Total)
+#print(Total)
 
 df_T = df.T ## I am able to append a column but not an index
 
 df_T["Total"] = Total
-print(df_T)
+#print(df_T)
 
 print(f"Now based on this datasets each unit probability has changed.")
 
 dict_tot = Total.to_dict()
-print(dict_tot)
+#print(dict_tot)
 
 prob_dict = {} ## new probability
 for k,v in dict_tot.items():
@@ -90,10 +90,7 @@ for k,v in dict_tot.items():
 #print(prob_dict)
 
 df_T["New Probability"] = prob_dict.values()
-print(df_T)
-
-# export it to csv
-df_T.to_csv(r'D:\pythonProject\Sample-bias.csv')## change the path and name as per your system
+#print(df_T)
 
 ## now calculate the change in probability after all simulations are done.
 
@@ -104,5 +101,7 @@ for k1, v1 in prob_dict.items():
 df_T["Change in Probability"] = change_in_prob.values()
 print(df_T)
 
+# export it to csv
+df_T.to_csv(r'D:\pythonProject\Sample-bias.csv')## change the path and name as per your system
 
 
